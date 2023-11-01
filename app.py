@@ -1,14 +1,14 @@
 from flask import Flask, request, jsonify 
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
-#import os
+import os
 
 app = Flask(__name__)
 
 #creamos una base de datos, pasamos en el directorio base al que queremos que vaya y le damos el nombre
-#basedir = os.path.abspath(os.path.dirname(__file__))
-#app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(basedir, "app.sqlite")
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://dpvnsahhloytfq:ac81d880e6558b468b51ecf1ae447232ab9032fae3ac55709ffdc1376c1c74cc@ec2-54-171-193-12.eu-west-1.compute.amazonaws.com:5432/dc6r4h9f3o6sso"
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(basedir, "app.sqlite")
+# app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://dpvnsahhloytfq:ac81d880e6558b468b51ecf1ae447232ab9032fae3ac55709ffdc1376c1c74cc@ec2-54-171-193-12.eu-west-1.compute.amazonaws.com:5432/dc6r4h9f3o6sso"
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 

@@ -21,18 +21,20 @@ class Product(db.Model):
     prod_price = db.Column(db.Float, unique=False)
     prod_image = db.Column(db.String, unique=True)
     thumbnail_image = db.Column(db.String, unique=True)
+    category = db.Column(db.String)
 
-    def __init__(self, prod_name, prod_description, prod_price, prod_image, thumbnail_image):
+    def __init__(self, prod_name, prod_description, prod_price, prod_image, thumbnail_image, category):
         self.prod_name = prod_name
         self.prod_description = prod_description
         self.prod_price = prod_price
         self.prod_image = prod_image
         self.thumbnail_image = thumbnail_image
+        self.category = category
 
 #crear la clase de esquema en si
 class ProductSchema(ma.Schema):
     class Meta:
-        fields = ("prod_name", "prod_description", "prod_price", "prod_image", "thumbnail_image")
+        fields = ("prod_name", "prod_description", "prod_price", "prod_image", "thumbnail_image", "category")
 
 #instanciar ProductSchema con dos variables, una cuando trabajemos con un solo producto y otra con multiples
 product_schema = ProductSchema()
@@ -46,8 +48,9 @@ def add_product():
     prod_price = request.json["prod_price"]
     prod_image = request.json["prod_image"]
     thumbnail_image = request.json["thumbnail_image"]
+    category = request.json["category"]
 
-    new_product = Product(prod_name, prod_description, prod_price, prod_image, thumbnail_image)
+    new_product = Product(prod_name, prod_description, prod_price, prod_image, thumbnail_image, category)
 
     db.session.add(new_product)
     db.session.commit()
@@ -78,12 +81,14 @@ def product_update(id):
     prod_price = request.json["prod_price"]
     prod_image = request.json["prod_image"]
     thumbnail_image = request.json["thumbnail_image"]
+    category = request.json["category"]
 
     product.prod_name = prod_name
     product.prod_description = prod_description
     product.prod_price = prod_price
     product.prod_image = prod_image
     product.thumbnail_image = thumbnail_image
+    product.category = category
 
     db.session.commit()
     return product_schema.jsonify(product)

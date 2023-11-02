@@ -34,7 +34,7 @@ class Product(db.Model):
 #crear la clase de esquema en si
 class ProductSchema(ma.Schema):
     class Meta:
-        fields = ("prod_name", "prod_description", "prod_price", "prod_image", "thumbnail_image", "category")
+        fields = ("id", "prod_name", "prod_description", "prod_price", "prod_image", "thumbnail_image", "category")
 
 #instanciar ProductSchema con dos variables, una cuando trabajemos con un solo producto y otra con multiples
 product_schema = ProductSchema()

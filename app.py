@@ -43,12 +43,12 @@ products_schema = ProductSchema(many=True)
 #Endpoint to create a new product
 @app.route("/product", methods=["POST"])
 def add_product():
-    prod_name = request.json["prod_name"]
-    prod_description = request.json["prod_description"]
-    prod_price = request.json["prod_price"]
-    prod_image = request.json["prod_image"]
-    thumbnail_image = request.json["thumbnail_image"]
-    category = request.json["category"]
+    prod_name = request.form["prod_name"]
+    prod_description = request.form["prod_description"]
+    prod_price = request.form["prod_price"]
+    prod_image = request.form["prod_image"]
+    thumbnail_image = request.form["thumbnail_image"]
+    category = request.form["category"]
 
     new_product = Product(prod_name, prod_description, prod_price, prod_image, thumbnail_image, category)
 
@@ -76,12 +76,12 @@ def get_product(id):
 @app.route("/product/<id>", methods=["PUT"])
 def product_update(id):
     product = Product.query.get(id)
-    prod_name = request.json["prod_name"]
-    prod_description = request.json["prod_description"]
-    prod_price = request.json["prod_price"]
-    prod_image = request.json["prod_image"]
-    thumbnail_image = request.json["thumbnail_image"]
-    category = request.json["category"]
+    prod_name = request.form["prod_name"]
+    prod_description = request.form["prod_description"]
+    prod_price = request.form["prod_price"]
+    prod_image = request.form["prod_image"]
+    thumbnail_image = request.form["thumbnail_image"]
+    category = request.form["category"]
 
     product.prod_name = prod_name
     product.prod_description = prod_description

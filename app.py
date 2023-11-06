@@ -43,12 +43,12 @@ products_schema = ProductSchema(many=True)
 #Endpoint to create a new product
 @app.route("/product", methods=["POST"])
 def add_product():
-    prod_name = request.json["prod_name"]
-    prod_description = request.json["prod_description"]
-    prod_price = request.json["prod_price"]
-    prod_image = request.json["prod_image"]
-    thumbnail_image = request.json["thumbnail_image"]
-    category = request.json["category"]
+    prod_name = request.json("prod_name")
+    prod_description = request.json("prod_description")
+    prod_price = request.json("prod_price")
+    prod_image = request.json("prod_image")
+    thumbnail_image = request.json("thumbnail_image")
+    category = request.json("category")
 
     new_product = Product(prod_name, prod_description, prod_price, prod_image, thumbnail_image, category)
 

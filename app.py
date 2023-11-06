@@ -55,9 +55,11 @@ def add_product():
     db.session.add(new_product)
     db.session.commit()
 
-    product = Product.query.get(new_product.id)
+    return jsonify(product_schema.dump(new_product))
 
-    return product_schema.jsonify(product)
+    #product = Product.query.get(new_product.id)
+
+    #return product_schema.jsonify(product)
 
 #Endpoint to query all products
 @app.route("/products", methods=["GET"])
